@@ -1,3 +1,7 @@
+# IDE specific manifests
+.idea/
+.vscode
+
 # Logs
 logs
 *.log
@@ -15,7 +19,7 @@ pids
 lib-cov
 
 # Coverage directory used by tools like istanbul
-coverage
+.coverage
 
 # nyc test coverage
 .nyc_output
