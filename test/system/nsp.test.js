@@ -2,7 +2,8 @@
  * @fileOverview Ensures nsprc is as expected
  */
 
-var expect = require('chai').expect,
+var _ = require('lodash'),
+    expect = require('chai').expect,
     fs = require('fs');
 
 /* global describe, it, before */
@@ -28,14 +29,15 @@ describe('nsp', function () {
             expect(nsprc.exceptions).to.eql([]);
         });
 
-        it('must exclude only a known set of packages', function () {
-            expect(nsprc.exclusions).to.eql([]);
+        it('must exclude only a known set of packages (prevent erroneous exclusions)', function () {
+            expect(nsprc.exclusions).to.eql({
+                'postman-collection': '3.0.0'
+            });
         });
 
-        // if you are changing the version here, most probably you are better of removing the exclusion in first place.
-        // remove the exclusion and check if nsp passes, else update the version here
-        it('on excluded package\'s version change must reconsider removing exclusion', function () {
-            // expect(pkg.dependencies).to.have.property('<name>', '<semver>');
+        it('dependency version in package.json should match .nsprc (time to remove exclusion?)', function () {
+            var pkg = _.pick(require('../../package').dependencies, _.keys(nsprc.exclusions));
+            expect(pkg).to.eql(nsprc.exclusions);
         });
     });
 });
