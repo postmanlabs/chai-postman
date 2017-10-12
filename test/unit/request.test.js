@@ -1,9 +1,10 @@
 var chai = require('chai'),
-    Request = require('postman-collection').Request,
+    sdk = require('postman-collection'),
 
+    Request = sdk.Request,
     expect = chai.expect;
 
-chai.use(require('../../index'));
+chai.use(require('../../')(sdk));
 
 describe('request assertions', function () {
     describe('.postmanRequestOrResponse', function () {
