@@ -30,9 +30,7 @@ describe('nsp', function () {
         });
 
         it('must exclude only a known set of packages (prevent erroneous exclusions)', function () {
-            expect(nsprc.exclusions).to.eql({
-                'postman-collection': '3.0.0'
-            });
+            expect(nsprc.exclusions).to.eql({});
         });
 
         it('dependency version in package.json should match .nsprc (time to remove exclusion?)', function () {
