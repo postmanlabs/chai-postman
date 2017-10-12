@@ -24,6 +24,9 @@
   ],
   "author": "Postman Labs <help@getpostman.com> (=)",
   "license": "Apache-2.0",
+  "dependencies": {
+    "lodash": "4.17.4"
+  },
   "devDependencies": {
     "async": "2.5.0",
     "browserify": "14.4.0",
@@ -49,6 +52,7 @@
     "nsp": "2.8.1",
     "nyc": "11.0.3",
     "parse-gitignore": "0.3.1",
+    "postman-collection": "3.0.0",
     "pretty-ms": "3.0.1",
     "recursive-readdir": "2.1.0",
     "shelljs": "0.7.8",

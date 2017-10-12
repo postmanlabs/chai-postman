@@ -8,8 +8,8 @@ var chalk = require('chalk'),
 require('async').series([
     require('./test-lint'),
     require('./test-system'),
-    require('./test-unit')
-    // require('./test-browser')
+    require('./test-unit'),
+    require('./test-browser')
     // require('./test-integration')
 ], function (code) {
     // eslint-disable-next-line max-len
