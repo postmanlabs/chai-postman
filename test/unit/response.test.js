@@ -1,10 +1,11 @@
-var chai = require('chai'),
+var _ = require('lodash'),
+    chai = require('chai'),
     sdk = require('postman-collection'),
 
     Response = sdk.Response,
     expect = chai.expect;
 
-chai.use(require('../../')(sdk));
+chai.use(require('../../')(sdk, _));
 
 describe('response assertions', function () {
     describe('.postmanRequestOrResponse', function () {
