@@ -49,4 +49,4 @@ Check the [tests](https://github.com/postmanlabs/chai-postman/tree/develop/test/
 | chai-postman | postman-collection |  lodash |
 |:------------:|:------------------:|:-------:|
 |    v0.1.0    |        v3.x        | v4.17.4 |
-|    v0.1.1    |        v3.x        | v4.17.4 |
+|    v1.0.0    |        v3.x        | v4.17.4 |
