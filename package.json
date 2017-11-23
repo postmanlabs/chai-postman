@@ -1,6 +1,6 @@
 {
   "name": "chai-postman",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Chai plugin for Postman assertions",
   "main": "index.js",
   "scripts": {
@@ -49,7 +49,7 @@
     "nsp": "2.8.1",
     "nyc": "11.3.0",
     "parse-gitignore": "0.4.0",
-    "postman-collection": "3.0.4",
+    "postman-collection": "3.0.5",
     "pretty-ms": "3.1.0",
     "recursive-readdir": "2.2.1",
     "shelljs": "0.7.8",
