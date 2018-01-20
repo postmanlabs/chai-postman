@@ -52,7 +52,7 @@
     "postman-collection": "3.0.7",
     "pretty-ms": "3.1.0",
     "recursive-readdir": "2.2.1",
-    "shelljs": "0.8.0",
+    "shelljs": "0.8.1",
     "watchify": "3.9.0"
   },
   "engines": {
