@@ -1,6 +1,6 @@
 {
   "name": "chai-postman",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Chai plugin for Postman assertions",
   "main": "index.js",
   "scripts": {
