@@ -242,15 +242,19 @@ describe('response assertions', function () {
         it('should be asserted correctly', function () {
             expect(new Response({ code: 200 })).to.be.ok;
             expect(new Response({ code: 202 })).to.be.accepted;
+            expect(new Response({ code: 204 })).to.be.withoutContent;
             expect(new Response({ code: 401 })).to.be.unauthorized;
             expect(new Response({ code: 403 })).to.be.forbidden;
+            expect(new Response({ code: 404 })).to.be.notFound;
         });
 
         it('should handle negated assertions correctly', function () {
             expect(new Response({ code: 200 })).to.not.be.accepted;
             expect(new Response({ code: 202 })).to.not.be.unauthorized;
+            expect(new Response({ code: 204 })).to.not.be.rateLimited;
             expect(new Response({ code: 401 })).to.not.be.forbidden;
             expect(new Response({ code: 403 })).to.not.be.ok;
+            expect(new Response({ code: 400 })).to.not.be.notFound;
         });
 
         it('should handle incorrect assertions correctly', function () {
@@ -261,11 +265,17 @@ describe('response assertions', function () {
                 expect(new Response({ code: 202 })).to.be.unauthorized;
             }).to.throw('expected response to have status reason \'UNAUTHORIZED\' but got \'ACCEPTED\'');
             expect(function () {
+                expect(new Response({ code: 204 })).to.be.rateLimited;
+            }).to.throw('expected response to have status reason \'TOO MANY REQUESTS\' but got \'NO CONTENT\'');
+            expect(function () {
                 expect(new Response({ code: 401 })).to.be.forbidden;
             }).to.throw('expected response to have status reason \'FORBIDDEN\' but got \'UNAUTHORIZED\'');
             expect(function () {
                 expect(new Response({ code: 403 })).to.be.ok;
             }).to.throw('expected response to have status reason \'OK\' but got \'FORBIDDEN\'');
+            expect(function () {
+                expect(new Response({ code: 404 })).to.be.ok;
+            }).to.throw('expected response to have status reason \'OK\' but got \'NOT FOUND\'');
         });
 
         it('should handle negated incorrect assertions correctly', function () {
@@ -281,6 +291,9 @@ describe('response assertions', function () {
             expect(function () {
                 expect(new Response({ code: 403 })).to.not.be.forbidden;
             }).to.throw('expected response to not have status reason \'FORBIDDEN\'');
+            expect(function () {
+                expect(new Response({ code: 404 })).to.not.be.notFound;
+            }).to.throw('expected response to not have status reason \'NOT FOUND\'');
         });
     });
 

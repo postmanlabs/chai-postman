@@ -1,6 +1,8 @@
 # Chai Postman Changelog
 
-#### Unreleased
+#### v1.0.2 (March 20, 2018)
+* :arrow_up: Updated dependencies.
+* :bug: Fixed a bug that caused response status reason assertions to fail #88
 
 #### v1.0.1 (November 23, 2017)
 * :arrow_up: Updated dependencies.
