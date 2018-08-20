@@ -1,5 +1,8 @@
 # Chai Postman Changelog
 
+#### v1.0.4 (August 20, 2018)
+* Updated dependencies :arrow_up:
+
 #### v1.0.3 (April 25, 2018)
 * Updated dependencies :arrow_up:
 
