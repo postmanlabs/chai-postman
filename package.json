@@ -8,7 +8,9 @@
     "test-lint": "node npm/test-lint.js",
     "test-browser": "node npm/test-browser.js",
     "test-unit": "node npm/test-unit.js",
-    "test-system": "node npm/test-system.js"
+    "test-system": "node npm/test-system.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -61,5 +63,9 @@
   "bugs": {
     "url": "https://github.com/postmanlabs/chai-postman/issues"
   },
-  "homepage": "https://github.com/postmanlabs/chai-postman#readme"
+  "homepage": "https://github.com/postmanlabs/chai-postman#readme",
+  "snyk": true,
+  "dependencies": {
+    "snyk": "^1.104.2"
+  }
 }
