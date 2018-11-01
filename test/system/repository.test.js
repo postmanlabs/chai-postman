@@ -184,6 +184,16 @@ describe('project repository', function () {
         });
     });
 
+    describe('.gitattributes', function () {
+        it('must exist', function (done) {
+            fs.stat('./.gitattributes', done);
+        });
+
+        it('must have readable content', function () {
+            expect(fs.readFileSync('./.gitattributes').toString()).to.be.ok;
+        });
+    });
+
     describe('.nsprc', function () {
         it('must exist', function (done) {
             fs.stat('./.nsprc', done);
