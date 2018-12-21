@@ -847,7 +847,7 @@ describe('response assertions', function () {
         it('should handle incorrect assertions correctly', function () {
             expect(function () {
                 expect({random: 123}).to.have.jsonSchema(schema);
-            }).to.throw('expected json to be valid against the specified schema but found following errors: \n' +
+            }).to.throw('expected data to satisfy schema but found following errors: \n' +
                 'data should NOT have additional properties, data should have required property \'alpha\''
             );
         });
@@ -859,13 +859,13 @@ describe('response assertions', function () {
         it('should handle incorrect negated assertions correctly', function () {
             expect(function () {
                 expect({alpha: true}).to.not.have.jsonSchema(schema);
-            }).to.throw('expected json to be invalid against the specified schema');
+            }).to.throw('expected data to not satisfy schema');
         });
 
         it('should override default schema validator options', function () {
             expect(function () {
                 expect({beta: 123, alpha: 123}).to.have.jsonSchema(schema, {allErrors: false});
-            }).to.throw('expected json to be valid against the specified schema but found following errors: \n' +
+            }).to.throw('expected data to satisfy schema but found following errors: \n' +
                 'data.alpha should be boolean'
             );
         });
@@ -881,7 +881,7 @@ describe('response assertions', function () {
 
             expect(function () {
                 expect(response).to.have.jsonSchema(schema, {_parseJSON: false});
-            }).to.throw('expected json to be valid against the specified schema');
+            }).to.throw('expected data to satisfy schema but found following errors');
         });
     });
 });
