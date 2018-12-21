@@ -25,6 +25,7 @@
   "author": "Postman Labs <help@getpostman.com> (=)",
   "license": "Apache-2.0",
   "devDependencies": {
+    "ajv": "6.6.2",
     "async": "2.6.1",
     "browserify": "16.2.3",
     "chai": "4.2.0",
