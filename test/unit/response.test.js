@@ -1,11 +1,12 @@
 var _ = require('lodash'),
+    Ajv = require('ajv'),
     chai = require('chai'),
     sdk = require('postman-collection'),
 
     Response = sdk.Response,
     expect = chai.expect;
 
-chai.use(require('../../')(sdk, _));
+chai.use(require('../../')(sdk, _, Ajv));
 
 describe('response assertions', function () {
     describe('.postmanRequestOrResponse', function () {
@@ -825,6 +826,56 @@ describe('response assertions', function () {
             expect(function () {
                 expect(res).to.not.have.responseSize(123);
             }).to.throw('expected response to not have a valid response size but got 45');
+        });
+    });
+
+    describe('.jsonSchema', function () {
+        var schema = {
+            $schema: 'http://json-schema.org/draft-07/schema#',
+            required: ['alpha'],
+            additionalProperties: false,
+            properties: {
+                alpha: { type: 'boolean' },
+                beta: { type: 'boolean' }
+            }
+        };
+
+        it('should assert the data with valid schema correctly', function () {
+            expect({alpha: true}).to.have.jsonSchema(schema);
+        });
+
+        it('should handle negated assertions correctly', function () {
+            expect({alpha: 123}).to.not.have.jsonSchema(schema);
+        });
+
+        it('should handle incorrect assertions correctly', function () {
+            expect(function () {
+                expect({random: 123}).to.have.jsonSchema(schema);
+            }).to.throw('expected json to be valid against the specified schema but found following errors: \n' +
+                'data should NOT have additional properties, data should have required property \'alpha\''
+            );
+        });
+
+        it('should override default schema validator options', function () {
+            expect(function () {
+                expect({beta: 123, alpha: 123}).to.have.jsonSchema(schema, {allErrors: false});
+            }).to.throw('expected json to be valid against the specified schema but found following errors: \n' +
+                'data.alpha should be boolean'
+            );
+        });
+
+        it('should execute `.json()` method by default if exists', function () {
+            var response = new Response({ body: '{"alpha": false}' });
+
+            expect(response).to.have.jsonSchema(schema);
+        });
+
+        it('should not execute `.json()` method if _parseJSON option is false', function () {
+            var response = new Response({ body: '{"alpha": false}' });
+
+            expect(function () {
+                expect(response).to.have.jsonSchema(schema, {_parseJSON: false});
+            }).to.throw('expected json to be valid against the specified schema');
         });
     });
 });
