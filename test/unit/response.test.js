@@ -844,16 +844,22 @@ describe('response assertions', function () {
             expect({alpha: true}).to.have.jsonSchema(schema);
         });
 
-        it('should handle negated assertions correctly', function () {
-            expect({alpha: 123}).to.not.have.jsonSchema(schema);
-        });
-
         it('should handle incorrect assertions correctly', function () {
             expect(function () {
                 expect({random: 123}).to.have.jsonSchema(schema);
             }).to.throw('expected json to be valid against the specified schema but found following errors: \n' +
                 'data should NOT have additional properties, data should have required property \'alpha\''
             );
+        });
+
+        it('should handle negated assertions correctly', function () {
+            expect({alpha: 123}).to.not.have.jsonSchema(schema);
+        });
+
+        it('should handle incorrect negated assertions correctly', function () {
+            expect(function () {
+                expect({alpha: true}).to.not.have.jsonSchema(schema);
+            }).to.throw('expected json to be invalid against the specified schema');
         });
 
         it('should override default schema validator options', function () {
@@ -864,13 +870,13 @@ describe('response assertions', function () {
             );
         });
 
-        it('should execute `.json()` method by default if exists', function () {
+        it('should auto parse JSON by default if .json() method exists', function () {
             var response = new Response({ body: '{"alpha": false}' });
 
             expect(response).to.have.jsonSchema(schema);
         });
 
-        it('should not execute `.json()` method if _parseJSON option is false', function () {
+        it('should not auto parse JSON if _parseJSON option is false', function () {
             var response = new Response({ body: '{"alpha": false}' });
 
             expect(function () {
