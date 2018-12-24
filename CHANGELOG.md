@@ -1,6 +1,6 @@
 # Chai Postman Changelog
 
-#### v1.1.0 (Unreleased)
+#### v1.1.0 (December 24, 2018)
 * Added support for JSON schema assertions
 * Updated dependencies :arrow_up:
 
