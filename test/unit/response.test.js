@@ -875,5 +875,25 @@ describe('response assertions', function () {
 
             expect(response).to.have.jsonSchema(schema);
         });
+
+        it('should not auto parse JSON if `json` method exists', function () {
+            var obj = {
+                    alpha: true,
+                    json: function () {
+                        return {
+                            alpha: 123
+                        };
+                    }
+                },
+                schema = {
+                    properties: {
+                        alpha: {
+                            type: 'boolean'
+                        }
+                    }
+                };
+
+            expect(obj).to.have.jsonSchema(schema);
+        });
     });
 });
