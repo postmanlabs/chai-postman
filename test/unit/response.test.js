@@ -870,18 +870,10 @@ describe('response assertions', function () {
             );
         });
 
-        it('should auto parse JSON by default if .json() method exists', function () {
+        it('should auto parse JSON for PostmanResponse & PostmanRequest instance', function () {
             var response = new Response({ body: '{"alpha": false}' });
 
             expect(response).to.have.jsonSchema(schema);
-        });
-
-        it('should not auto parse JSON if _parseJSON option is false', function () {
-            var response = new Response({ body: '{"alpha": false}' });
-
-            expect(function () {
-                expect(response).to.have.jsonSchema(schema, {_parseJSON: false});
-            }).to.throw('expected data to satisfy schema but found following errors');
         });
     });
 });
