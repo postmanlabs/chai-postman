@@ -74,7 +74,7 @@ describe('project repository', function () {
             it('must have the hashbang defined', function () {
                 json.scripts && Object.keys(json.scripts).forEach(function (scriptName) {
                     var fileContent = fs.readFileSync('npm/' + scriptName + '.js').toString();
-                    expect(/^#!\/(bin\/bash|usr\/bin\/env\snode)[\r\n][\W\w]*$/g.test(fileContent)).to.be.ok;
+                    expect((/^#!\/(bin\/bash|usr\/bin\/env\snode)[\r\n][\W\w]*$/g).test(fileContent)).to.be.ok;
                 });
             });
         });
@@ -146,8 +146,8 @@ describe('project repository', function () {
     describe('.ignore files', function () {
         var gitignorePath = '.gitignore',
             npmignorePath = '.npmignore',
-            npmignore = parseIgnore(npmignorePath),
-            gitignore = parseIgnore(gitignorePath);
+            npmignore = parseIgnore(fs.readFileSync(npmignorePath)),
+            gitignore = parseIgnore(fs.readFileSync(gitignorePath));
 
         describe(gitignorePath, function () {
             it('must exist', function (done) {
@@ -184,13 +184,13 @@ describe('project repository', function () {
         });
     });
 
-    describe('.nsprc', function () {
+    describe('.gitattributes', function () {
         it('must exist', function (done) {
-            fs.stat('./.nsprc', done);
+            fs.stat('./.gitattributes', done);
         });
 
         it('must have readable content', function () {
-            expect(fs.readFileSync('./.nsprc').toString()).to.be.ok;
+            expect(fs.readFileSync('./.gitattributes').toString()).to.be.ok;
         });
     });
 });

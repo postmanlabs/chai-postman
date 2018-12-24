@@ -4,12 +4,11 @@
 // This script is intended to execute all unit tests.
 // ---------------------------------------------------------------------------------------------------------------------
 
-require('shelljs/global');
-
 // set directories and files for test and coverage report
-var path = require('path'),
+const path = require('path'),
 
     NYC = require('nyc'),
+    sh = require('shelljs'),
     chalk = require('chalk'),
     recursive = require('recursive-readdir'),
 
@@ -20,12 +19,13 @@ module.exports = function (exit) {
     // banner line
     console.info(chalk.yellow.bold('Running unit tests using mocha on node...'));
 
-    test('-d', COV_REPORT_PATH) && rm('-rf', COV_REPORT_PATH);
-    mkdir('-p', COV_REPORT_PATH);
+    sh.test('-d', COV_REPORT_PATH) && sh.rm('-rf', COV_REPORT_PATH);
+    sh.mkdir('-p', COV_REPORT_PATH);
 
     var Mocha = require('mocha'),
         nyc = new NYC({
-            reporter: ['text', 'lcov'],
+            hookRequire: true,
+            reporter: ['text', 'lcov', 'text-summary'],
             reportDir: COV_REPORT_PATH,
             tempDirectory: COV_REPORT_PATH
         });
@@ -52,4 +52,4 @@ module.exports = function (exit) {
 };
 
 // ensure we run this script exports if this is a direct stdin.tty run
-!module.parent && module.exports(exit);
+!module.parent && module.exports(process.exit);
