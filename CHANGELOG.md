@@ -1,5 +1,8 @@
 # Chai Postman Changelog
 
+#### v1.1.2 (January 2, 2019)
+* Updated dependencies :arrow_up:
+
 #### v1.1.1 (December 25, 2018)
 * Disabled Ajv logs on JSON schema assertions
 
