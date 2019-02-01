@@ -803,7 +803,7 @@ describe('response assertions', function () {
         it('should handle missing data correctly', function () {
             var res = new Response();
 
-            expect(res).to.have.responseSize(30);
+            expect(res).to.have.responseSize(32);
         });
 
         it.skip('should handle negated assertions correctly', function () {
@@ -817,7 +817,7 @@ describe('response assertions', function () {
 
             expect(function () {
                 expect(res).to.have.responseSize(123);
-            }).to.throw('expected response size to equal 30 but got 123');
+            }).to.throw('expected response size to equal 32 but got 123');
         });
 
         it('should handle incorrect negated assertions correctly', function () {
