@@ -3,6 +3,7 @@
  * content of the file as well. Any change to package.json must be accompanied by valid test case in this spec-sheet.
  */
 var _ = require('lodash'),
+    yml = require('js-yaml'),
     expect = require('chai').expect,
     parseIgnore = require('parse-gitignore');
 
@@ -191,6 +192,16 @@ describe('project repository', function () {
 
         it('must have readable content', function () {
             expect(fs.readFileSync('./.gitattributes').toString()).to.be.ok;
+        });
+    });
+
+    describe('CHANGELOG.yaml', function () {
+        it('should exist', function (done) {
+            fs.stat('./CHANGELOG.yaml', done);
+        });
+
+        it('should have readable content', function () {
+            expect(yml.safeLoad(fs.readFileSync('./CHANGELOG.yaml')), 'not a valid yaml').to.be.ok;
         });
     });
 });
