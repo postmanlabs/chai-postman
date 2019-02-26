@@ -1,3 +1,6 @@
+master:
+  chores:
+
 1.1.2:
   date: 2019-01-2
   chores:
@@ -34,8 +37,7 @@
   date: 2018-03-20
   fixed bugs:
     - >-
-      Fixed a bug that caused response status reason assertions to fail (GitHub
-      88)
+      Fixed a bug that caused response status reason assertions to fail (GH-88)
   chores:
     - Updated dependencies
 
@@ -49,11 +51,11 @@
   breaking changes:
     - >-
       Deferred dependency onto lodash (https://www.npmjs.com/package/lodash) to
-      consuming code (GitHub 15)
+      consuming code (GH-15)
   chores:
     - Updated dependencies
 
 0.1.0:
   date: 2017-10-12
   initial release:
-    - 'Initial plugin code, tests, and documentation (GitHUb 2)'
+    - 'Initial plugin code, tests, and documentation (GH-2)'
