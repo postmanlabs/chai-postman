@@ -33,7 +33,7 @@
 1.0.2:
   date: 2018-03-20
   fixed bugs:
-    - Fixed a bug that caused response status reason assertions to fail (GH-88)
+    - GH-88 Fixed a bug that caused response status reason assertions to fail
   chores:
     - Updated dependencies
 
@@ -46,12 +46,12 @@
   date: 2017-11-20
   breaking changes:
     - >-
-      Deferred dependency onto lodash (https://www.npmjs.com/package/lodash) to
-      consuming code (GH-15)
+      GH-15 Deferred dependency onto lodash (https://www.npmjs.com/package/lodash) to
+      consuming code
   chores:
     - Updated dependencies
 
 0.1.0:
   date: 2017-10-12
   initial release:
-    - 'Initial plugin code, tests, and documentation (GH-2)'
+    - 'GH-2 Initial plugin code, tests, and documentation'
