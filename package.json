@@ -49,7 +49,7 @@
     "mocha": "6.0.2",
     "nyc": "13.3.0",
     "parse-gitignore": "1.0.1",
-    "postman-collection": "3.4.4",
+    "postman-collection": "3.4.5",
     "pretty-ms": "4.0.0",
     "puppeteer": "1.12.2",
     "recursive-readdir": "2.2.2",
