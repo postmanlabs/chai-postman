@@ -51,7 +51,7 @@
     "parse-gitignore": "1.0.1",
     "postman-collection": "3.4.5",
     "pretty-ms": "4.0.0",
-    "puppeteer": "1.12.2",
+    "puppeteer": "1.13.0",
     "recursive-readdir": "2.2.2",
     "shelljs": "0.8.3",
     "watchify": "3.11.1",
