@@ -63,5 +63,10 @@
   "bugs": {
     "url": "https://github.com/postmanlabs/chai-postman/issues"
   },
-  "homepage": "https://github.com/postmanlabs/chai-postman#readme"
+  "homepage": "https://github.com/postmanlabs/chai-postman#readme",
+  "greenkeeper": {
+    "ignore": [
+      "eslint-plugin-jsdoc"
+    ]
+  }
 }
