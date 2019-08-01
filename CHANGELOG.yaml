@@ -1,4 +1,5 @@
-master:
+1.1.3:
+  date: 2019-08-01
   chores:
     - Updated dependencies
 
@@ -50,8 +51,8 @@ master:
   date: 2017-11-20
   breaking changes:
     - >-
-      GH-15 Deferred dependency onto lodash (https://www.npmjs.com/package/lodash) to
-      consuming code
+      GH-15 Deferred dependency onto lodash
+      (https://www.npmjs.com/package/lodash) to consuming code
   chores:
     - Updated dependencies
 
