@@ -8,7 +8,9 @@
     "test-lint": "node npm/test-lint.js",
     "test-browser": "node npm/test-browser.js",
     "test-unit": "node npm/test-unit.js",
-    "test-system": "node npm/test-system.js"
+    "test-system": "node npm/test-system.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -68,5 +70,9 @@
     "ignore": [
       "eslint-plugin-jsdoc"
     ]
+  },
+  "snyk": true,
+  "dependencies": {
+    "snyk": "^1.230.5"
   }
 }
