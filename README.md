@@ -1,6 +1,5 @@
-# chai-postman
+# chai-postman [![Build Status](https://travis-ci.org/postmanlabs/chai-postman.svg?branch=develop)](https://travis-ci.org/postmanlabs/chai-postman) [![codecov](https://codecov.io/gh/postmanlabs/chai-postman/branch/develop/graph/badge.svg)](https://codecov.io/gh/postmanlabs/chai-postman) [![Greenkeeper badge](https://badges.greenkeeper.io/postmanlabs/chai-postman.svg)](https://greenkeeper.io/)
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/postmanlabs/chai-postman.svg)](https://greenkeeper.io/)
 [Chai plugin](http://chaijs.com/api/plugins/) to assert on Postman Collections
 
 ## Install
