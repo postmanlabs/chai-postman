@@ -33,7 +33,7 @@
     "dependency-check": "4.1.0",
     "editorconfig": "0.15.3",
     "eslint": "5.15.3",
-    "eslint-plugin-jsdoc": "4.6.0",
+    "eslint-plugin-jsdoc": "21.0.0",
     "eslint-plugin-lodash": "5.1.0",
     "eslint-plugin-mocha": "6.0.0",
     "eslint-plugin-security": "1.4.0",
