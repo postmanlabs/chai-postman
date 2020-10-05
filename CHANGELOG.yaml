@@ -2,6 +2,7 @@ master:
   breaking changes:
     - GH-356 Dropped support for Node < v10
   chores:
+    - GH-357 Automated releases and publish process
     - >-
       GH-356 Updated .npmignore to prevent the addition of tests and config
       files in the published package
