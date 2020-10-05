@@ -2,13 +2,13 @@
   "name": "chai-postman",
   "version": "1.1.3",
   "description": "A Chai plugin for Postman assertions",
+  "author": "Postman Inc.",
+  "license": "Apache-2.0",
   "main": "index.js",
-  "scripts": {
-    "test": "npm run test-lint && npm run test-system && npm run test-unit && npm run test-browser",
-    "test-lint": "node npm/test-lint.js",
-    "test-browser": "node npm/test-browser.js",
-    "test-unit": "nyc --nycrc-path=.nycrc.js node npm/test-unit.js",
-    "test-system": "node npm/test-system.js"
+  "homepage": "https://github.com/postmanlabs/chai-postman#readme",
+  "bugs": {
+    "url": "https://github.com/postmanlabs/chai-postman/issues",
+    "email": "help@postman.com"
   },
   "repository": {
     "type": "git",
@@ -16,14 +16,16 @@
   },
   "keywords": [
     "chai",
-    "postman",
-    "plugin",
-    "assertions",
-    "sandbox",
-    "runtime"
+    "chai-plugin",
+    "postman"
   ],
-  "author": "Postman Labs <help@getpostman.com> (=)",
-  "license": "Apache-2.0",
+  "scripts": {
+    "test": "npm run test-lint && npm run test-system && npm run test-unit && npm run test-browser",
+    "test-browser": "node npm/test-browser.js",
+    "test-lint": "node npm/test-lint.js",
+    "test-system": "node npm/test-system.js",
+    "test-unit": "nyc --nycrc-path=.nycrc.js node npm/test-unit.js"
+  },
   "devDependencies": {
     "ajv": "^6.12.5",
     "browserify": "^16.5.2",
@@ -50,10 +52,6 @@
     "watchify": "^3.11.1"
   },
   "engines": {
-    "node": ">=4"
-  },
-  "bugs": {
-    "url": "https://github.com/postmanlabs/chai-postman/issues"
-  },
-  "homepage": "https://github.com/postmanlabs/chai-postman#readme"
+    "node": ">=10"
+  }
 }

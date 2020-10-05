@@ -31,14 +31,14 @@ describe('project repository', function () {
         describe('package.json JSON data', function () {
             it('must have valid name, description and author', function () {
                 expect(json).to.have.property('name', 'chai-postman');
-                // eslint-disable-next-line max-len
                 expect(json).to.have.property('description', 'A Chai plugin for Postman assertions');
-                expect(json).to.have.property('author', 'Postman Labs <help@getpostman.com> (=)');
+                expect(json).to.have.property('author', 'Postman Inc.');
                 expect(json).to.have.property('license', 'Apache-2.0');
-                // eslint-disable-next-line max-len
                 expect(json).to.have.property('homepage', 'https://github.com/postmanlabs/chai-postman#readme');
-                // eslint-disable-next-line max-len
-                expect(json.bugs).to.eql({ url: 'https://github.com/postmanlabs/chai-postman/issues' });
+                expect(json.bugs).to.eql({
+                    url: 'https://github.com/postmanlabs/chai-postman/issues',
+                    email: 'help@postman.com'
+                });
 
                 expect(json).to.have.property('repository');
                 expect(json.repository).to.eql({
@@ -47,10 +47,10 @@ describe('project repository', function () {
                 });
 
                 expect(json).to.have.property('keywords');
-                expect(json.keywords).to.eql(['chai', 'postman', 'plugin', 'assertions', 'sandbox', 'runtime']);
+                expect(json.keywords).to.eql(['chai', 'chai-plugin', 'postman']);
 
                 expect(json).to.have.property('engines');
-                expect(json.engines).to.eql({ node: '>=4' });
+                expect(json.engines).to.eql({ node: '>=10' });
             });
 
             it('must have a valid version string in form of <major>.<minor>.<revision>', function () {
