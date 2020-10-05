@@ -1,4 +1,4 @@
-var _ = require('lodash'),
+const _ = require('lodash'),
     chai = require('chai'),
     sdk = require('postman-collection'),
 
@@ -67,6 +67,7 @@ describe('request assertions', function () {
             expect(req).to.have.header('Content-Type', 'application/json; charset=utf-8');
         });
 
+        // eslint-disable-next-line mocha/no-skipped-tests
         it.skip('should handle negated value assertions correctly', function () {
             var req = new Request({
                 header: [{ key: 'Content-Type', value: 'application/json; charset=utf-8' }]

@@ -1,3 +1,19 @@
+2.0.0:
+  date: 2020-10-05
+  breaking changes:
+    - GH-356 Dropped support for Node < v10
+  chores:
+    - GH-357 Automated releases and publish process
+    - >-
+      GH-356 Updated .npmignore to prevent the addition of tests and config
+      files in the published package
+    - GH-356 Added system test for published package content
+    - GH-356 Removed puppeteer dependency for browser tests
+    - GH-356 Updated nyc configuration
+    - GH-356 Updated ESLint rules
+    - GH-356 Updated dependencies
+    - GH-261 Added `nyc` and `codecov` for code coverage
+
 1.1.3:
   date: 2019-08-01
   chores:

@@ -1,65 +1,45 @@
 #!/usr/bin/env node
+// ---------------------------------------------------------------------------------------------------------------------
+// This script is intended to execute all system tests.
+// ---------------------------------------------------------------------------------------------------------------------
 
-var sh = require('shelljs'),
-    chalk = require('chalk'),
-    async = require('async'),
+const path = require('path'),
+
     Mocha = require('mocha'),
+    chalk = require('chalk'),
     recursive = require('recursive-readdir'),
 
-    /**
-     * The source directory for system test specs.
-     *
-     * @type {String}
-     */
-    SPEC_SOURCE_DIR = './test/system';
+    SPEC_SOURCE_DIR = path.join(__dirname, '..', 'test', 'system');
 
 module.exports = function (exit) {
     // banner line
-    console.info(chalk.yellow.bold('\nRunning system tests...\n'));
+    console.info(chalk.yellow.bold('\nRunning system tests using mocha...'));
 
-    async.series([
+    // add all spec files to mocha
+    recursive(SPEC_SOURCE_DIR, (err, files) => {
+        if (err) {
+            console.error(err);
 
-        /**
-         * Enforces sanity checks on installed packages via dependency-check.
-         *
-         * @param {Function} next - The callback function invoked when the package sanity check has concluded.
-         * @returns {*}
-         */
-        function (next) {
-            console.log(chalk.yellow('checking package dependencies...\n'));
-
-            sh.exec('dependency-check ./package.json --extra --no-dev --missing', next);
-        },
-
-        /**
-         * Runs system tests on SPEC_SOURCE_DIR using Mocha.
-         *
-         * @param {Function} next - The callback invoked to mark the completion of the test run.
-         * @returns {*}
-         */
-        function (next) {
-            console.info('\nrunning system specs using mocha...');
-
-            var mocha = new Mocha();
-
-            recursive(SPEC_SOURCE_DIR, function (err, files) {
-                if (err) {
-                    console.error(err);
-                    return exit(1);
-                }
-
-                files.filter(function (file) {
-                    return (file.substr(-8) === '.test.js');
-                }).forEach(function (file) {
-                    mocha.addFile(file);
-                });
-
-                // start the mocha run
-                mocha.run(next);
-                mocha = null; // cleanup
-            });
+            return exit(1);
         }
-    ], exit);
+
+        const mocha = new Mocha({ timeout: 1000 * 60 });
+
+        files.filter((file) => { // extract all test files
+            return (file.substr(-8) === '.test.js');
+        }).forEach(mocha.addFile.bind(mocha));
+
+        // start the mocha run
+        mocha.run((runError) => {
+            if (runError) {
+                console.error(runError.stack || runError);
+
+                return exit(1);
+            }
+
+            exit();
+        });
+    });
 };
 
 // ensure we run this script exports if this is a direct stdin.tty run

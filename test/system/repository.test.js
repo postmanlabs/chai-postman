@@ -2,17 +2,15 @@
  * @fileOverview This test specs runs tests on the package.json file of repository. It has a set of strict tests on the
  * content of the file as well. Any change to package.json must be accompanied by valid test case in this spec-sheet.
  */
-var _ = require('lodash'),
+const _ = require('lodash'),
+    fs = require('fs'),
     yml = require('js-yaml'),
     expect = require('chai').expect,
     parseIgnore = require('parse-gitignore');
 
-/* global describe, it */
 describe('project repository', function () {
-    var fs = require('fs');
-
     describe('package.json', function () {
-        var content,
+        let content,
             json;
 
         try {
@@ -33,14 +31,14 @@ describe('project repository', function () {
         describe('package.json JSON data', function () {
             it('must have valid name, description and author', function () {
                 expect(json).to.have.property('name', 'chai-postman');
-                // eslint-disable-next-line max-len
                 expect(json).to.have.property('description', 'A Chai plugin for Postman assertions');
-                expect(json).to.have.property('author', 'Postman Labs <help@getpostman.com> (=)');
+                expect(json).to.have.property('author', 'Postman Inc.');
                 expect(json).to.have.property('license', 'Apache-2.0');
-                // eslint-disable-next-line max-len
                 expect(json).to.have.property('homepage', 'https://github.com/postmanlabs/chai-postman#readme');
-                // eslint-disable-next-line max-len
-                expect(json.bugs).to.eql({ url: 'https://github.com/postmanlabs/chai-postman/issues' });
+                expect(json.bugs).to.eql({
+                    url: 'https://github.com/postmanlabs/chai-postman/issues',
+                    email: 'help@postman.com'
+                });
 
                 expect(json).to.have.property('repository');
                 expect(json.repository).to.eql({
@@ -49,70 +47,29 @@ describe('project repository', function () {
                 });
 
                 expect(json).to.have.property('keywords');
-                expect(json.keywords).to.eql(['chai', 'postman', 'plugin', 'assertions', 'sandbox', 'runtime']);
+                expect(json.keywords).to.eql(['chai', 'chai-plugin', 'postman']);
 
                 expect(json).to.have.property('engines');
-                expect(json.engines).to.eql({ node: '>=4' });
+                expect(json.engines).to.eql({ node: '>=10' });
             });
 
             it('must have a valid version string in form of <major>.<minor>.<revision>', function () {
-                // eslint-disable-next-line max-len
+                // eslint-disable-next-line max-len, security/detect-unsafe-regex
                 expect(json.version).to.match(/^((\d+)\.(\d+)\.(\d+))(?:-([\dA-Za-z-]+(?:\.[\dA-Za-z-]+)*))?(?:\+([\dA-Za-z-]+(?:\.[\dA-Za-z-]+)*))?$/);
             });
         });
 
-        describe('script definitions', function () {
-            it('files must exist', function () {
-                var scriptRegex = /^node\snpm\/.+\.js$/;
-
-                expect(json.scripts).to.be.ok;
-                json.scripts && Object.keys(json.scripts).forEach(function (scriptName) {
-                    expect(scriptRegex.test(json.scripts[scriptName])).to.be.ok;
-                    expect(fs.statSync('npm/' + scriptName + '.js')).to.be.ok;
-                });
-            });
-
-            it('must have the hashbang defined', function () {
-                json.scripts && Object.keys(json.scripts).forEach(function (scriptName) {
-                    var fileContent = fs.readFileSync('npm/' + scriptName + '.js').toString();
-                    expect((/^#!\/(bin\/bash|usr\/bin\/env\snode)[\r\n][\W\w]*$/g).test(fileContent)).to.be.ok;
-                });
-            });
-        });
-
-        describe.skip('dependencies', function () {
-            it('must exist', function () {
-                expect(json.dependencies).to.be.a('object');
-            });
-
-            it('must point to a valid and precise (no * or ^) semver', function () {
-                json.dependencies && Object.keys(json.dependencies).forEach(function (item) {
-                    expect(json.dependencies[item]).to.match(new RegExp('^((\\d+)\\.(\\d+)\\.(\\d+))(?:-' +
-                        '([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?(?:\\+([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?$'));
-                });
-            });
-        });
-
         describe('devDependencies', function () {
-            it('must exist', function () {
-                expect(json.devDependencies).to.be.a('object');
+            it('should exist', function () {
+                expect(json.devDependencies).to.be.an('object');
             });
 
-            it('must point to a valid and precise (no * or ^) semver', function () {
-                json.devDependencies && Object.keys(json.devDependencies).forEach(function (item) {
-                    expect(json.devDependencies[item]).to.match(new RegExp('^((\\d+)\\.(\\d+)\\.(\\d+))(?:-' +
+            it('should point to a valid semver', function () {
+                Object.keys(json.devDependencies).forEach(function (dependencyName) {
+                    // eslint-disable-next-line security/detect-non-literal-regexp
+                    expect(json.devDependencies[dependencyName]).to.match(new RegExp('((\\d+)\\.(\\d+)\\.(\\d+))(?:-' +
                         '([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?(?:\\+([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?$'));
                 });
-            });
-
-            it.skip('should not overlap dependencies', function () {
-                var clean = [];
-
-                json.devDependencies && Object.keys(json.devDependencies).forEach(function (item) {
-                    !json.dependencies[item] && clean.push(item);
-                });
-
-                expect(Object.keys(json.devDependencies)).to.eql(clean);
             });
         });
 
