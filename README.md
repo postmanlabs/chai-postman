@@ -1,4 +1,4 @@
-# chai-postman [![Build Status](https://travis-ci.org/postmanlabs/chai-postman.svg?branch=develop)](https://travis-ci.org/postmanlabs/chai-postman) [![codecov](https://codecov.io/gh/postmanlabs/chai-postman/branch/develop/graph/badge.svg)](https://codecov.io/gh/postmanlabs/chai-postman) [![Greenkeeper badge](https://badges.greenkeeper.io/postmanlabs/chai-postman.svg)](https://greenkeeper.io/)
+# chai-postman [![Build Status](https://travis-ci.com/postmanlabs/chai-postman.svg?branch=develop)](https://travis-ci.com/postmanlabs/chai-postman) [![codecov](https://codecov.io/gh/postmanlabs/chai-postman/branch/develop/graph/badge.svg)](https://codecov.io/gh/postmanlabs/chai-postman)
 
 [Chai plugin](http://chaijs.com/api/plugins/) to assert on Postman Collections
 
@@ -42,10 +42,3 @@ expect(res).to.have.statusCode(200);
 ```
 
 Check the [tests](https://github.com/postmanlabs/chai-postman/tree/develop/test/unit) for a complete reference.
-
-## Compatibility
-
-| chai-postman | postman-collection |  lodash |
-|:------------:|:------------------:|:-------:|
-|    v0.1.0    |        v3.x        | v4.17.4 |
-|    v1.0.0    |        v3.x        | v4.17.4 |
