@@ -2,17 +2,15 @@
  * @fileOverview This test specs runs tests on the package.json file of repository. It has a set of strict tests on the
  * content of the file as well. Any change to package.json must be accompanied by valid test case in this spec-sheet.
  */
-var _ = require('lodash'),
+const _ = require('lodash'),
+    fs = require('fs'),
     yml = require('js-yaml'),
     expect = require('chai').expect,
     parseIgnore = require('parse-gitignore');
 
-/* global describe, it */
 describe('project repository', function () {
-    var fs = require('fs');
-
     describe('package.json', function () {
-        var content,
+        let content,
             json;
 
         try {
@@ -56,44 +54,22 @@ describe('project repository', function () {
             });
 
             it('must have a valid version string in form of <major>.<minor>.<revision>', function () {
-                // eslint-disable-next-line max-len
+                // eslint-disable-next-line max-len, security/detect-unsafe-regex
                 expect(json.version).to.match(/^((\d+)\.(\d+)\.(\d+))(?:-([\dA-Za-z-]+(?:\.[\dA-Za-z-]+)*))?(?:\+([\dA-Za-z-]+(?:\.[\dA-Za-z-]+)*))?$/);
             });
         });
 
-        describe.skip('dependencies', function () {
-            it('must exist', function () {
-                expect(json.dependencies).to.be.a('object');
-            });
-
-            it('must point to a valid and precise (no * or ^) semver', function () {
-                json.dependencies && Object.keys(json.dependencies).forEach(function (item) {
-                    expect(json.dependencies[item]).to.match(new RegExp('^((\\d+)\\.(\\d+)\\.(\\d+))(?:-' +
-                        '([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?(?:\\+([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?$'));
-                });
-            });
-        });
-
         describe('devDependencies', function () {
-            it('must exist', function () {
-                expect(json.devDependencies).to.be.a('object');
+            it('should exist', function () {
+                expect(json.devDependencies).to.be.an('object');
             });
 
-            it('must point to a valid and precise (no * or ^) semver', function () {
-                json.devDependencies && Object.keys(json.devDependencies).forEach(function (item) {
-                    expect(json.devDependencies[item]).to.match(new RegExp('^((\\d+)\\.(\\d+)\\.(\\d+))(?:-' +
+            it('should point to a valid semver', function () {
+                Object.keys(json.devDependencies).forEach(function (dependencyName) {
+                    // eslint-disable-next-line security/detect-non-literal-regexp
+                    expect(json.devDependencies[dependencyName]).to.match(new RegExp('((\\d+)\\.(\\d+)\\.(\\d+))(?:-' +
                         '([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?(?:\\+([\\dA-Za-z\\-]+(?:\\.[\\dA-Za-z\\-]+)*))?$'));
                 });
-            });
-
-            it.skip('should not overlap dependencies', function () {
-                var clean = [];
-
-                json.devDependencies && Object.keys(json.devDependencies).forEach(function (item) {
-                    !json.dependencies[item] && clean.push(item);
-                });
-
-                expect(Object.keys(json.devDependencies)).to.eql(clean);
             });
         });
 
