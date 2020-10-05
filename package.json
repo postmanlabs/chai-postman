@@ -20,6 +20,7 @@
     "postman"
   ],
   "scripts": {
+    "release": "node npm/create-release.js",
     "test": "npm run test-lint && npm run test-system && npm run test-unit && npm run test-browser",
     "test-browser": "node npm/test-browser.js",
     "test-lint": "node npm/test-lint.js",
@@ -27,6 +28,7 @@
     "test-unit": "nyc --nycrc-path=.nycrc.js node npm/test-unit.js"
   },
   "devDependencies": {
+    "@postman/shipit": "0.2.0",
     "ajv": "^6.12.5",
     "browserify": "^16.5.2",
     "chai": "^4.2.0",
