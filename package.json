@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@postman/shipit": "0.2.0",
-    "ajv": "^6.12.5",
+    "ajv": "^7.1.0",
     "browserify": "^17.0.0",
     "chai": "^4.2.0",
     "chalk": "^4.1.0",
