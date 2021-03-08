@@ -51,7 +51,7 @@
     "parse-gitignore": "^1.0.1",
     "postman-collection": "^3.6.9",
     "recursive-readdir": "^2.2.2",
-    "watchify": "^3.11.1"
+    "watchify": "^4.0.0"
   },
   "engines": {
     "node": ">=10"
