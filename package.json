@@ -39,7 +39,7 @@
     "eslint-plugin-lodash": "^7.1.0",
     "eslint-plugin-mocha": "^8.0.0",
     "eslint-plugin-security": "^1.4.0",
-    "js-yaml": "^3.14.1",
+    "js-yaml": "^4.1.0",
     "karma": "^5.2.3",
     "karma-browserify": "^8.0.0",
     "karma-chrome-launcher": "^3.1.0",
