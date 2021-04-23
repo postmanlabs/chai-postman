@@ -69,7 +69,6 @@ function calculateChecksum (script, encryption) {
     return `${shasum.digest('hex')}  codecov`;
 }
 
-
 async function validateScript (script) {
     const version = getVersion(script);
 
