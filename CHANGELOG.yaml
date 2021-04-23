@@ -1,5 +1,6 @@
 master:
   chores:
+    - Added secure codecov publish script
     - Updated dependencies
 
 2.0.0:

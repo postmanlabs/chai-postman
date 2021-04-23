@@ -20,6 +20,7 @@
     "postman"
   ],
   "scripts": {
+    "codecov": "node npm/publish-coverage.js",
     "release": "node npm/create-release.js",
     "test": "npm run test-lint && npm run test-system && npm run test-unit && npm run test-browser",
     "test-browser": "node npm/test-browser.js",
