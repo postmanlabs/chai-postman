@@ -20,6 +20,7 @@
     "postman"
   ],
   "scripts": {
+    "codecov": "node npm/publish-coverage.js",
     "release": "node npm/create-release.js",
     "test": "npm run test-lint && npm run test-system && npm run test-unit && npm run test-browser",
     "test-browser": "node npm/test-browser.js",
@@ -35,7 +36,7 @@
     "chalk": "^4.1.0",
     "editorconfig": "^0.15.3",
     "eslint": "^7.17.0",
-    "eslint-plugin-jsdoc": "^30.7.11",
+    "eslint-plugin-jsdoc": "^32.3.1",
     "eslint-plugin-lodash": "^7.1.0",
     "eslint-plugin-mocha": "^8.0.0",
     "eslint-plugin-security": "^1.4.0",
