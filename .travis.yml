@@ -68,9 +68,9 @@ jobs:
           all_branches: true
 
 before_install:
-  - '[[ -z "$CREATE_RELEASE" ]] && unset encrypted_05f822b6caa8_key'
-  - '[[ -z "$CREATE_RELEASE" ]] && unset encrypted_05f822b6caa8_iv'
-  - '[[ -z "$TRAVIS_TAG" ]] && unset NPM_API_TOKEN'
+  - '[[ -z "$CREATE_RELEASE" ]] && unset encrypted_05f822b6caa8_key || true'
+  - '[[ -z "$CREATE_RELEASE" ]] && unset encrypted_05f822b6caa8_iv || true'
+  - '[[ -z "$TRAVIS_TAG" ]] && unset NPM_API_TOKEN || true'
 
 notifications:
   slack:
