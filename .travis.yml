@@ -16,7 +16,7 @@ jobs:
       node_js: stable
       script:
         - npm run test-unit
-        - bash <(curl -s https://codecov.io/bash) -c -Z -f .coverage/coverage-final.json -F unit
+        - npm run codecov -- -c -Z -f .coverage/coverage-final.json -F unit
 
     # create a new release if $CREATE_RELEASE is set
     - stage: Create Release
@@ -45,7 +45,7 @@ jobs:
     # publish npm package on tagged builds
     - stage: Publish Package
       if: tag IS present
-      os: osx
+      os: linux
       node_js: 12
       git:
         depth: false # disable --depth
@@ -66,6 +66,11 @@ jobs:
         on:
           tags: true
           all_branches: true
+
+before_install:
+  - '[[ -z "$CREATE_RELEASE" ]] && unset encrypted_05f822b6caa8_key'
+  - '[[ -z "$CREATE_RELEASE" ]] && unset encrypted_05f822b6caa8_iv'
+  - '[[ -z "$TRAVIS_TAG" ]] && unset NPM_API_TOKEN'
 
 notifications:
   slack:

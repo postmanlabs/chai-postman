@@ -1,3 +1,9 @@
+2.0.1:
+  date: 2021-04-25
+  chores:
+    - Added secure codecov publish script
+    - Updated dependencies
+
 2.0.0:
   date: 2020-10-05
   breaking changes:
@@ -75,4 +81,4 @@
 0.1.0:
   date: 2017-10-12
   initial release:
-    - 'GH-2 Initial plugin code, tests, and documentation'
+    - GH-2 Initial plugin code, tests, and documentation
