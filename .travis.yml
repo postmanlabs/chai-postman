@@ -45,7 +45,7 @@ jobs:
     # publish npm package on tagged builds
     - stage: Publish Package
       if: tag IS present
-      os: osx
+      os: linux
       node_js: 12
       git:
         depth: false # disable --depth
