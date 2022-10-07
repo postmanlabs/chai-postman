@@ -33,7 +33,7 @@
     "ajv": "^6.12.5",
     "browserify": "^17.0.0",
     "chai": "^4.3.4",
-    "chalk": "^4.1.1",
+    "chalk": "^5.1.0",
     "editorconfig": "^0.15.3",
     "eslint": "^7.24.0",
     "eslint-plugin-jsdoc": "^32.3.1",
