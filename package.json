@@ -38,7 +38,7 @@
     "eslint": "^7.24.0",
     "eslint-plugin-jsdoc": "^32.3.1",
     "eslint-plugin-lodash": "^7.2.0",
-    "eslint-plugin-mocha": "^8.1.0",
+    "eslint-plugin-mocha": "^10.5.0",
     "eslint-plugin-security": "^1.4.0",
     "js-yaml": "^4.1.0",
     "karma": "^6.3.2",
