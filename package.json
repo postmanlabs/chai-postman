@@ -50,7 +50,7 @@
     "mocha": "^8.3.2",
     "nyc": "^15.1.0",
     "parse-gitignore": "^1.0.1",
-    "postman-collection": "^3.6.11",
+    "postman-collection": "^4.5.0",
     "recursive-readdir": "^2.2.2",
     "watchify": "^4.0.0"
   },
